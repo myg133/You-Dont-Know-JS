@@ -1135,17 +1135,17 @@ So let's examine if ES6 object destructuring with defaults can help at all:
 ```js
 config.options = config.options || {};
 config.log = config.log || {};
-{
+({
 	options: {
-		remove: config.options.remove = default.options.remove,
-		enable: config.options.enable = default.options.enable,
-		instance: config.options.instance = default.options.instance
+		remove: config.options.remove = defaults.options.remove,
+		enable: config.options.enable = defaults.options.enable,
+		instance: config.options.instance = defaults.options.instance
 	} = {},
 	log: {
-		warn: config.log.warn = default.log.warn,
-		error: config.log.error = default.log.error
+		warn: config.log.warn = defaults.log.warn,
+		error: config.log.error = defaults.log.error
 	} = {}
-} = config;
+} = config);
 ```
 
 Not as nice as the false promise of `Object.assign(..)` (being that it's shallow only), but it's better than the manual approach by a fair bit, I think. It is still unfortunately verbose and repetitive, though.
@@ -2533,7 +2533,7 @@ var s1 = "abc\u0301d",
 [...s3.normalize()][2];			// "𝒞"
 ```
 
-**Warning:** Reminder of an earlier warning: constructing and exhausting an iterator each time you want to get at a single character is... very not ideal, performance wise. Let's hope we get a built-in and optimized utility for this soon, post-ES6.
+**Warning:** Reminder of an earlier warning: constructing and exhausting an iterator each time you want to get at a single character is... not very ideal, performance wise. Let's hope we get a built-in and optimized utility for this soon, post-ES6.
 
 What about a Unicode-aware version of the `charCodeAt(..)` utility? ES6 gives us `codePointAt(..)`:
 
